@@ -1,0 +1,50 @@
+managed;
+strict ( 2 );
+
+define behavior for Z_I_TRAVEL_M_IGG alias travel
+implementation in class zbp_i_travel_m_igg unique
+persistent table ZTRAVEL_M_IGG
+etag master last_changed_at
+lock master
+authorization master (global)
+early numbering
+{
+  mapping for /DMO/TRAVEL_M corresponding;
+
+  create;
+  update;
+  delete;
+  association _Booking { create; }
+}
+
+define behavior for Z_I_BOOKING_M_IGG alias booking
+implementation in class zbp_i_booking_m_igg unique
+persistent table ZBOOKING_M_IGG
+etag master last_changed_at
+lock dependent by _Travel
+authorization dependent by _Travel
+early numbering
+{
+  field ( readonly ) travel_id, booking_id;
+  update;
+
+  association _Travel;
+  association _BookSupplement { create; }
+}
+
+define behavior for Z_I_BookSuppl_M_IGG alias booksuppl
+implementation in class zbp_i_bookingsupplement_m_igg unique
+persistent table ZBOOKSUPPL_M_IGG
+etag master last_changed_at
+lock dependent by _Travel
+authorization dependent by _Travel
+early numbering
+
+{
+  field ( readonly ) travel_id, booking_id, supplement_id;
+
+  update;
+
+  association _Travel;
+  association _Booking;
+}

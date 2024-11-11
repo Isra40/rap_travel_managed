@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definition for Travel Managed'
+define service ZSD_TRAVEL_M_IGG {
+  expose Z_I_TRAVEL_M_IGG as Travel;
+  expose Z_I_BOOKING_M_IGG as Booking;
+  expose Z_I_BookSuppl_M_IGG as BookingSupplement;
+}
