@@ -21,13 +21,13 @@ CLASS zcl_load_tbl_m_igg IMPLEMENTATION.
     DELETE FROM zbooksuppl_m_igg.
 
     out->write( 'Reading Travel /DMO/ data' ) ##NO_TEXT.
-    SELECT * FROM /dmo/travel
+    SELECT * FROM /dmo/travel_m
       INTO CORRESPONDING FIELDS OF TABLE @it_travel.
 
-    SELECT * FROM /dmo/booking
+    SELECT * FROM /dmo/booking_m
            INTO CORRESPONDING FIELDS OF TABLE @it_booking.
 
-    SELECT * FROM /dmo/book_suppl
+    SELECT * FROM /dmo/booksuppl_m
            INTO CORRESPONDING FIELDS OF TABLE @it_book_suppl.
 
     describe table it_travel lines data(lv_travel_read_lines).
